@@ -54,7 +54,7 @@ class IPODetails(models.Model):
     drhp = models.CharField(max_length=255)
 
     #user foreigkey
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ipo_details')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ipo_details')
 
     def __str__(self):
         return self.company_name
