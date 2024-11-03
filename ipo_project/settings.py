@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "ipo_app",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "ipo_app",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -53,7 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "ipo_project.urls"
 
 TEMPLATES = [
-    {
+    {   
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
         "APP_DIRS": True,
@@ -75,11 +76,18 @@ WSGI_APPLICATION = "ipo_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',  # The name of your database
+        'USER': 'postgres',  # Your username
+        'PASSWORD': 'lEvmZiNAmAuoDjpJToHMbvqEMmWDIJzk',  # Your password
+        'HOST': 'autorack.proxy.rlwy.net',  # Your host
+        'PORT': '53262',  # Your port
     }
 }
+
+
+
 
 
 # Password validation
