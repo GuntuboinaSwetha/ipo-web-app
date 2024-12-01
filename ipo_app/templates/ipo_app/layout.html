@@ -6,6 +6,8 @@
     <title>Bluestock Fintech</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'ipo_app/styles.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script src="{% static 'ipo_app/script.js' %}"></script>
     <script src="{% static 'ipo_app/Ipomain.js' %}"></script>
 </head>
@@ -21,11 +23,11 @@
                 <h3>MENU</h3>
                 <div class="menu-item" id="dashboardLink">
                     <span class="icon">📊</span>
-                    <a href="dashboard.html">Dashboard</a>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
                 </div>
                 <div class="menu-item" id="manageIpoLink">
                     <span class="icon">📈</span>
-                    <a href="manage_ipo.html">Manage IPO</a>
+                    <a href="{% url 'manage_ipo' %}">Manage IPO</a>
                 </div>
                 <div class="menu-item" id="ipoSubscriptionLink">
                     <span class="icon">📝</span>
