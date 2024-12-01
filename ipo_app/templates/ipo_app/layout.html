@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluestock Fintech</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ipo_app/styles.css' %}">
+    <script src="{% static 'ipo_app/script.js' %}"></script>
+    <script src="{% static 'ipo_app/Ipomain.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="menu">
+                <div class="logo">
+                    <span class="logo-text">BF</span>
+                    <span>Bluestock Fintech</span>
+                </div>
+                <h3>MENU</h3>
+                <div class="menu-item" id="dashboardLink">
+                    <span class="icon">📊</span>
+                    <a href="dashboard.html">Dashboard</a>
+                </div>
+                <div class="menu-item" id="manageIpoLink">
+                    <span class="icon">📈</span>
+                    <a href="manage_ipo.html">Manage IPO</a>
+                </div>
+                <div class="menu-item" id="ipoSubscriptionLink">
+                    <span class="icon">📝</span>
+                    <a href="ipo_subscription.html">IPO Subscription</a>
+                </div>
+                <div class="menu-item">
+                    <span class="icon">📋</span>
+                    IPO Allotment
+                </div>
+            </div>
+    
+            <div class="menu-section">
+                <h3>OTHERS</h3>
+                <div class="menu-item">
+                    <span class="icon">⚙️</span>
+                    Settings
+                </div>
+                <div class="menu-item">
+                    <span class="icon">🔧</span>
+                    API Manager
+                </div>
+                <div class="menu-item">
+                    <span class="icon">👤</span>
+                    Accounts
+                </div>
+                <div class="menu-item">
+                    <span class="icon">❓</span>
+                    Help
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <nav class="navbar">
+                <div class="nav-left">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="avatar">V</div>
+                        <span>Hi, Team</span>
+                    </div>
+                    <div class="notifications">
+                        <span class="notification-icon">🔔</span>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Content Placeholder -->
+            <main class="content">
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+
+    
+</body>
+</html>
