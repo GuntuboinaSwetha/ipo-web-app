@@ -1,0 +1,164 @@
+{% extends "ipo_app/layout.html" %}
+{% load static %}
+
+{% block title %}Dashboard - Bluestock Fintech{% endblock %}
+
+{% block content %}
+<main class="content">
+    <h1>Dashboard</h1>
+
+    <div class="dashboard-grid">
+        <div class="card ipo-stats">
+            <h2>IPO Dashboard India</h2>
+            <h4><span style='font-size:15px; color: rgb(0, 188, 0); '>&#11105;&nbsp;&nbsp;20 </span>&nbsp;IPO in gain</h4>
+            
+            <div id="ipoVisualization">
+                <svg id="ipoChart" width="400" height="400"></svg>
+            </div>
+            <div class="stats-container">
+                <!-- Additional stats content goes here -->
+            </div>
+        </div>
+
+        <div class="card quick-links">
+            <h2>Quick Links</h2>
+            <h4 class="subtitle">Adipiscing elit, sed do eiusmod tempor</h4>
+            <div class="links-list">
+                <div class="link-item">
+                    <div class="link-icon nse">NSE</div>
+                    <span>NSE India</span>
+                    <a href="#" class="visit-link">Visit Now</a>
+                </div>
+                <div class="link-item">
+                    <div class="link-icon bse">BSE</div>
+                    <span>BSE India</span>
+                    <a href="#" class="visit-link">Visit Now</a>
+                </div>
+                <div class="link-item">
+                    <div class="link-icon sebi">SEBI</div>
+                    <span>SEBI</span>
+                    <a href="#" class="visit-link">Visit Now</a>
+                </div>
+                <div class="link-item">
+                    <div class="link-icon money">₹</div>
+                    <span>Money Control</span>
+                    <a href="#" class="visit-link">Visit Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card main-board">
+            <div class="board-header">
+                <h2>Main Board IPO</h2><br>
+                <div class="date-container">
+                    <h4 class="date">From 01 Jan 2024</h4>
+                    <a href="#" class="visit-store">View Report</a>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="mainBoardChart"></canvas>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="dot upcoming"></span>
+                        <span>Upcoming (15)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="dot new"></span>
+                        <span>New Listed (25)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="dot ongoing"></span>
+                        <span>Ongoing (2)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'ipo_app/script.js' %}"></script>
+<script src="{% static 'ipo_app/Ipomain.js' %}"></script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize Chart.js for the main board chart
+        const mainBoardCanvas = document.getElementById('mainBoardChart');
+        if (mainBoardCanvas) {
+            const mainBoardCtx = mainBoardCanvas.getContext('2d');
+            new Chart(mainBoardCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Upcoming', 'New Listed', 'Ongoing'],
+                    datasets: [{
+                        data: [15, 25, 2],
+                        backgroundColor: ['#6366f1', '#06b6d4', '#8b5cf6'],
+                        borderWidth: 0,
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        } else {
+            console.error('Main Board Chart canvas not found');
+        }
+
+        // Initialize D3.js for the IPO chart
+        const svg = d3.select('#ipoChart')
+            .attr('width', 400)
+            .attr('height', 400);
+
+        if (!svg.empty()) {
+            const data = [
+                { label: 'Total IPO', value: 30, color: '#f28c33', radius: 100 },
+                { label: 'IPO in Gain', value: 20, color: '#41bfc8', radius: 70 },
+                { label: 'IPO in Loss', value: 19, color: '#6a4cbf', radius: 60 }
+            ];
+
+            const positions = [
+                { x: 240, y: 170 },
+                { x: 110, y: 260 },
+                { x: 110, y: 120 }
+            ];
+
+            const circles = svg.selectAll('g')
+                .data(data)
+                .enter()
+                .append('g')
+                .attr('transform', (d, i) => `translate(${positions[i].x}, ${positions[i].y})`);
+
+            circles.append('circle')
+                .attr('r', d => d.radius)
+                .style('fill', d => d.color)
+                .style('opacity', 0.8);
+
+            circles.append('text')
+                .attr('class', 'circle-text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', '-0.5em')
+                .text(d => d.value)
+                .style('fill', '#fff')
+                .style('font-size', '1.2em')
+                .style('font-weight', 'bold');
+
+            circles.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', '1.5em')
+                .text(d => d.label)
+                .style('font-size', '0.8em')
+                .style('fill', '#fff');
+        } else {
+            console.error('SVG container for D3 chart not found');
+        }
+    });
+</script>
+{% endblock %}

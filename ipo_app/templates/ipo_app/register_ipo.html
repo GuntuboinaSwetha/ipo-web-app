@@ -1,0 +1,259 @@
+{% extends 'ipo_app/layout.html' %}
+
+{% block title %}Register IPO{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register IPO</title>
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+h1, h2, h3, h4, label {
+    margin: 0;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+h4 {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Layout */
+main.content {
+    display: flex;
+    flex-direction: row; /* Sidebar on the left, main content on the right */
+    padding: 20px;
+}
+
+.sidebar {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    background-color: #f4f4f4;
+    height: 100vh; /* Full viewport height */
+    position: sticky; /* Keeps it sticky while scrolling */
+    top: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    padding: 20px;
+}
+
+.main-content {
+    flex: 1; /* Main content takes up the rest of the space */
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling if content overflows */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Sidebar menu styles */
+.menu-items .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #495057;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.menu-item.active {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+/* Form and button styles */
+.form-container .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Buttons */
+button {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btn-register {
+    background-color: #007bff;
+    color: white;
+}
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    margin-left: 10px;
+}
+.btn-upload, .btn-delete, .btn-submit {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #ced4da;
+}
+</style>
+</head>
+<body>
+    <main class="content">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <p class="manage-text">Manage your IPO Details</p>
+            <div class="menu-items">
+                <div class="menu-item active">
+                    <div class="icon info-icon"></div>
+                    <span>IPO Information</span>
+                </div>
+                <div class="menu-item">
+                    <div class="icon doc-icon"></div>
+                    <span>IPO Info</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <div class="header">
+                <h2>IPO Information</h2>
+                <div class="header-buttons">
+                    <button class="btn-register">Register</button>
+                    <button class="btn-cancel">Cancel</button>
+                </div>
+            </div>
+
+            <p class="details-text">Enter IPO Details</p>
+
+            <div class="form-container">
+                <div class="logo-section">
+                    <h3>Company Logo</h3>
+                    <div class="logo-container">
+                        <div class="logo-wrapper">
+                            <img src="nse-logo.png" alt="NSE India" class="company-logo">
+                            <div class="logo-text">
+                                <span class="logo-title">NSE India</span>
+                                <span class="logo-subtitle">Tech Lead</span>
+                                <span class="logo-subtitle">Public</span>
+                            </div>
+                        </div>
+                        <div class="logo-buttons">
+                            <button class="btn-upload">Upload Logo</button>
+                            <button class="btn-delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="ipo-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" value="Vodafone Idea" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Price Band</label>
+                            <input type="text" value="Not Issued" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Open</label>
+                            <input type="text" value="Not Issued" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Close</label>
+                            <input type="text" value="Not Issued" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Issue Size</label>
+                            <input type="text" value="2300 Cr." class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Issue Type</label>
+                            <select class="form-select">
+                                <option value="">Select issue type</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>LISTING DATE</label>
+                            <input type="text" value="Not Issued" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-select">
+                                <option value="">Select status</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">NEW LISTED IPO DETAILS (WHEN IPO GET LISTED)</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>IPO PRICE</label>
+                            <input type="text" value="₹ 383" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>LISTING PRICE</label>
+                            <input type="text" value="₹ 435" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>LISTING GAIN</label>
+                            <input type="text" value="13.58 %" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>LISTING DATE</label>
+                            <input type="text" value="2024-05-30" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CMP</label>
+                            <input type="text" value="₹410" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>CURRENT RETURN</label>
+                            <input type="text" value="7.7 %" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}

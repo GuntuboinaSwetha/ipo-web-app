@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage IPO</title>
+    <link rel="stylesheet" href="frontend\static\styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="menu">
+                <div class="logo">
+                    <span class="logo-text">BF</span>
+                    <span>Bluestock Fintech</span>
+                </div>
+                <h3>MENU</h3>
+                <div class="menu-item" id="dashboardLink">
+                    <span class="icon">📊</span>
+                    <a href="Index.html">Dashboard</a>
+                </div>
+                <div class="menu-item active" id="manageIpoLink">
+                    <span class="icon">📈</span>
+                    <a href="Manage_IPO.html">Manage IPO</a>
+                </div>
+                <div class="menu-item" id="ipoSubscriptionLink">
+                    <span class="icon">📝</span>
+                    
+                    <a href="IPO_Subscription.html">IPO Subscription</a>
+                </div>
+                <div class="menu-item">
+                    <span class="icon">📋</span>
+                    IPO Allotment
+                </div>
+            </div>
+    
+            <div class="menu-section">
+                <h3>OTHERS</h3>
+                <div class="menu-item">
+                    <span class="icon">⚙️</span>
+                    Settings
+                </div>
+                <div class="menu-item">
+                    <span class="icon">🔧</span>
+                    API Manager
+                </div>
+                <div class="menu-item">
+                    <span class="icon">👤</span>
+                    Accounts
+                </div>
+                <div class="menu-item">
+                    <span class="icon">❓</span>
+                    Help
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content (Navbar and Dashboard) -->
+        <div class="main-content">
+            <nav class="navbar">
+                <div class="nav-left">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="avatar">V</div>
+                        <span>Hi, Team</span>
+                    </div>
+                    <div class="notifications">
+                        <span class="notification-icon">🔔</span>
+                    </div>
+                </div>
+            </nav>
+            
+            <main class="content">
+                <div class="header">
+                    <h1>Upcoming IPO | Dashboard</h1>
+                    <div class="user-profile">
+                      <button class="register-btn">Register IPO</button>
+                    </div>
+                  </div>
+                
+
+                <div class="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style="width: 12%">Company</th>
+                          <th style="width: 10%">Price Band</th>
+                          <th style="width: 10%">Open</th>
+                          <th style="width: 10%">Close</th>
+                          <th style="width: 10%">Issue Size</th>
+                          <th style="width: 10%">Issue Type</th>
+                          <th style="width: 10%">Listing Date</th>
+                          <th style="width: 10%">Status</th>
+                          <th style="width: 10%">Action</th>
+                          <th style="width: 10%">Delete/View</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Adani Power</td>
+                          <td>₹ 129 - 136</td>
+                          <td>2024-06-03</td>
+                          <td>2024-06-05</td>
+                          <td>130.15 Cr.</td>
+                          <td>Book Built</td>
+                          <td>2024-06-10</td>
+                          <td><span class="status-badge status-ongoing">Ongoing</span></td>
+                          <td>
+                            <button class="btn-update">Update</button>
+                          </td>
+                          <td class="action-cell">
+                            <button class="btn-icon">
+                              <span class="material-icons">delete</span>
+                            </button>
+                            <button class="btn-icon">
+                              <span class="material-icons">visibility</span>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>VBL LTD</td>
+                          <td>₹ 129 - 136</td>
+                          <td>2024-06-03</td>
+                          <td>2024-06-05</td>
+                          <td>130.15 Cr.</td>
+                          <td>Book Built</td>
+                          <td>2024-06-10</td>
+                          <td><span class="status-badge status-coming">Coming</span></td>
+                          <td>
+                            <button class="btn-update">Update</button>
+                          </td>
+                          <td class="action-cell">
+                            <button class="btn-icon">
+                              <span class="material-icons">delete</span>
+                            </button>
+                            <button class="btn-icon">
+                              <span class="material-icons">visibility</span>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Tata Motor</td>
+                          <td>₹ 129 - 136</td>
+                          <td>2024-06-03</td>
+                          <td>2024-06-05</td>
+                          <td>130.15 Cr.</td>
+                          <td>Book Built</td>
+                          <td>2024-06-10</td>
+                          <td><span class="status-badge status-new">New Listed</span></td>
+                          <td>
+                            <button class="btn-update">Update</button>
+                          </td>
+                          <td class="action-cell">
+                            <button class="btn-icon">
+                              <span class="material-icons">delete</span>
+                            </button>
+                            <button class="btn-icon">
+                              <span class="material-icons">visibility</span>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+          
+                    <div class="pagination">
+                      <button class="page-btn">&lt;</button>
+                      <button class="page-btn active">1</button>
+                      <button class="page-btn">2</button>
+                      <button class="page-btn">...</button>
+                      <button class="page-btn">9</button>
+                      <button class="page-btn">10</button>
+                      <button class="page-btn">&gt;</button>
+                    </div>
+                  </div>
+
+
+            </main>
+        </div>
+    </div>
+
+    <script src="frontend\Js\script.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="frontend\Js\Ipomain.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
