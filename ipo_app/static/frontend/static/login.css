@@ -1,0 +1,136 @@
+.login-form {
+    max-width: 400px;
+    padding: 40px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo img {
+    height: 32px;
+}
+
+.password-group {
+    margin-bottom: 24px;
+}
+
+.password-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.forgot-password {
+    color: #6366f1;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.keep-signed {
+    margin: 24px 0;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+.signup-button {
+    background-color: #6366f1;
+}
+
+.signup-button:hover {
+    background-color: #4f46e5;
+}
+
+.g-recaptcha {
+    margin: 24px 0;
+}
+
+.divider {
+    margin: 24px 0;
+    text-align: center;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #e5e7eb;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    background-color: #fff;
+    padding: 0 10px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.google-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.google-button:hover {
+    background-color: #e5e7eb;
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.create-account a {
+    color: #6366f1;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.create-account a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .login-form {
+        padding: 24px;
+    }
+} 
