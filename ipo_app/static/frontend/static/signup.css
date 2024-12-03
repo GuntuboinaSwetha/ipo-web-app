@@ -1,0 +1,477 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 440px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.signup-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo img {
+    height: 32px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #6c5ce7;
+}
+
+.password-input {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+
+.toggle-password i {
+    font-size: 16px;
+}
+
+.terms {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #666;
+}
+
+.terms a {
+    color: #6c5ce7;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+.signup-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+    background-color: #5b4bc4;
+}
+
+.divider {
+    text-align: center;
+    margin: 24px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    background-color: #fff;
+    padding: 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.google-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.google-button:hover {
+    background-color: #f1f3f4;
+}
+
+.google-icon {
+    min-width: 18px;
+    height: 18px;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-link a {
+    color: #6c5ce7;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 20px auto;
+    }
+    
+    .signup-form {
+        padding: 24px;
+    }
+}
+
+.password-input input {
+    padding-right: 40px;
+}
+
+.g-recaptcha-wrapper {
+    margin: 24px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.captcha-box {
+    width: 300px;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    margin: 0 auto;
+}
+
+.checkbox-wrapper {
+    padding: 16px;
+    position: relative;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-wrapper label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #c1c1c1;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.2s;
+    background: #fff;
+}
+
+.captcha-content {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+}
+
+.checkmark {
+    display: none;
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    left: 6px;
+    top: 3px;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + label .checkbox {
+    background: #0088ff;
+    border-color: #0088ff;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + label .checkmark {
+    display: block;
+}
+
+.text {
+    color: #555;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.captcha-footer {
+    border-top: 1px solid #d3d3d3;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+}
+
+.recaptcha-logo {
+    height: 16px;
+    width: auto;
+}
+
+.recaptcha-text {
+    color: #555;
+}
+
+.captcha-footer a {
+    color: #555;
+    text-decoration: none;
+    font-size: 8px;
+}
+
+.captcha-footer a:hover {
+    text-decoration: underline;
+}
+
+.captcha-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.challenge-image {
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.challenge-image.selected {
+    border-color: #0088ff;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.verify-btn, .skip-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.verify-btn {
+    background-color: #0088ff;
+    color: white;
+}
+
+.skip-btn {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Form validation styles */
+input.error {
+    border-color: #ff4444;
+}
+
+input.success {
+    border-color: #00C851;
+}
+
+.feedback {
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 17px;
+}
+
+.feedback.error {
+    color: #ff4444;
+}
+
+/* Password strength indicator */
+.password-strength {
+    height: 4px;
+    background-color: #f1f1f1;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    transition: all 0.3s;
+    background-color: #ff4444;
+}
+
+/* Loading spinner */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+
+/* reCAPTCHA responsive styles */
+@media screen and (max-width: 480px) {
+    .g-recaptcha {
+        transform: scale(0.85);
+        transform-origin: center;
+        margin: -8px 0;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .g-recaptcha {
+        transform: scale(0.75);
+        transform-origin: center;
+        margin: -16px 0;
+    }
+}
