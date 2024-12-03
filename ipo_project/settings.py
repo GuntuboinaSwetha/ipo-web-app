@@ -126,9 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "ipo_app/static", BASE_DIR / "frontend/static",]
+STATICFILES_DIRS = [BASE_DIR / "ipo_app/static",]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Use this for production
+# STATIC_ROOT = BASE_DIR / 'staticfiles'  # Use this for production
 
 # Email backend for development (console email backend)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

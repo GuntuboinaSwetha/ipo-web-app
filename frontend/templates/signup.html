@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an account - Bluestock</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'js/signup.js' %}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="signup-form">
+            <div class="logo">
+                <img src="{% static 'images/Logo.jpg' %}" alt="Bluestock">
+            </div>
+            
+            <h1>Create an account</h1>
+            
+            <form action="{% url 'signup_api' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Saisha Wagh" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="hello@bluestock.in" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fa-regular fa-eye" id="togglePassword"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="terms">
+                    By continuing, you agree to our <a href="/terms">terms of service</a>.
+                </div>
+
+               <!-- <div class="g-recaptcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key" data-theme="light"></div>
+                </div>-->
+
+                <button type="submit" class="signup-button">Sign up</button>
+
+                <div class="divider">
+                    <span>or sign up with</span>
+                </div>
+
+                <button type="button" class="google-button">
+                    <svg class="google-icon" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285f4"/>
+                        <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" fill="#34a853"/>
+                        <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#fbbc05"/>
+                        <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#ea4335"/>
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <div class="login-link">
+                    Already have an account? <a href="{% url 'login_user' %}">Sign in here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -9,5 +9,6 @@ urlpatterns = [
     path("create_account/",views.create_account,name='create_account'),
     path("login_user/",views.login_user,name='login_user'),
     path("forgot_password/",views.forgot_password,name='forgot_password'),
+    path("sign_up",views.sign_up,name="sign_up")
     
 ]

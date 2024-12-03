@@ -12,6 +12,10 @@ from django.http import JsonResponse
 import re
 import json
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 def dashboard(request):
     return render(request, "ipo_app/dashboard.html")  # Ensure the path to your template is correct
@@ -23,62 +27,66 @@ def manage_ipo(request):
 def register_ipo(request):
     return render(request, "ipo_app/register_ipo.html")  # Ensure the path to your template is correct
 
-@csrf_exempt
+def sign_up(request):
+    return render((request,"admin_app/signup.html"))
+
+
+@csrf_exempt  # Remove this in production
 def create_account(request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body.decode('utf-8'))
-            username = data.get('username')
-            email = data.get('email')
-            password = data.get('password')
+            username = request.POST.get('name')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
 
             if not username or not email or not password:
-                return JsonResponse({'error': 'All fields are required'}, status=400)
-
-            if User.objects.filter(username=username).exists():
-                return JsonResponse({'error': 'Username already exists'}, status=400)
+                messages.error(request, 'All fields are required')
+                return render(request, 'admin_app/signup.html')
 
             if User.objects.filter(email=email).exists():
-                return JsonResponse({'error': 'Email already exists'}, status=400)
+                messages.error(request, 'Email already exists')
+                return render(request, 'admin_app/signup.html')
 
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
-            return JsonResponse({'message': 'Account created successfully'}, status=201)
+            messages.success(request, 'Account created successfully')
+            return redirect('login_user')  # Redirect to the login page
 
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
-    else:
-        return render(request, 'ipo_app/signup.html')
-    
-@csrf_exempt
+            messages.error(request, f'An error occurred: {str(e)}')
+            return render(request, 'admin_app/signup.html')
+
+    return render(request, 'admin_app/signup.html')
+
+
+
+@csrf_exempt  # Remove this in production
 def login_user(request):
+    print("endpoint login hit")
     if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            username = data.get('username')
-            password = data.get('password')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        print("metho success")
 
-            if not username or not password:
-                return JsonResponse({'error': 'Username and password are required'}, status=400)
-
-            # Check if the user exists in the database
-            if not User.objects.filter(username=username).exists():
-                return JsonResponse({'error': 'User does not exist'}, status=404)
-
-            # Authenticate user
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                login(request, user)  # Logs in the user
-                return JsonResponse({'message': 'Login successful'}, status=200)
+        if email and password:
+            user = authenticate(request, username=email, password=password)
+            print("fileds succesfull")
+            if user:
+                login(request, user)  # Ensure this is imported at the top: `from django.contrib.auth import login`
+                print("login")
+                return render(request,"ipo_app/dashboard.html")
             else:
-                return JsonResponse({'error': 'Invalid username or password'}, status=401)
+                messages.error(request, 'Invalid email or password')
+                print("invslid")
+                return render(request, 'admin_app/login.html')  # Correct template for login
 
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
-    else:
-        return render(request, 'ipo_app/Login.html')
+        messages.error(request, 'Both fields are required')
+        print("fields missing")
+        return render(request, 'admin_app/login.html')  # Correct template for login
+
+    # If the request method is GET, render the login page
+    return render(request, 'admin_app/login.html')
 
 
 
@@ -116,4 +124,4 @@ def forgot_password(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
 
-        return render(request, 'ipo_app/forgot-password.html')
+        return render(request, 'admin_app/forgot-password.html')
