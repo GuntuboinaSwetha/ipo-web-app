@@ -1,0 +1,16 @@
+<!-- templates/ipo_registration.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPO Registration</title>
+</head>
+<body>
+    <h1>Upcoming IPO Information</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+        <button type="reset">Cancel</button>
+    </form>
+</body>
+</html>
