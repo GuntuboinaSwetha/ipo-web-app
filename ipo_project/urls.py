@@ -25,5 +25,13 @@ urlpatterns = [
 
 ]
 
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('ipo/register/', views.ipo_registration, name='ipo_registration'),
+]
+
+
     
 
