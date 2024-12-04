@@ -28,70 +28,68 @@ def register_ipo(request):
     return render(request, "ipo_app/register_ipo.html")  # Ensure the path to your template is correct
 
 def sign_up(request):
-    return render((request,"admin_app/signup.html"))
+    return render(request,"admin_app/signup.html")
 
 
-@csrf_exempt  # Remove this in production
-def create_account(request):
-    if request.method == 'POST':
-        try:
-            username = request.POST.get('name')
-            email = request.POST.get('email')
-            password = request.POST.get('password')
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
 
-            if not username or not email or not password:
-                messages.error(request, 'All fields are required')
-                return render(request, 'admin_app/signup.html')
+def sign_up(request):
+    if request.method == "POST":
+        # Extract form data
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
-            if User.objects.filter(email=email).exists():
-                messages.error(request, 'Email already exists')
-                return render(request, 'admin_app/signup.html')
+        # Check if a user with the same email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already registered!")
+            return redirect('sign_up')
 
-            user = User.objects.create_user(username=username, email=email, password=password)
-            user.save()
+        # Create the user
+        user = User.objects.create_user(username=email, email=email, password=password)
+        user.first_name = name
+        user.save()
 
-            messages.success(request, 'Account created successfully')
-            return redirect('login_user')  # Redirect to the login page
+        # Show a success message
+        messages.success(request, "Account created successfully! Please log in.")
 
-        except Exception as e:
-            messages.error(request, f'An error occurred: {str(e)}')
-            return render(request, 'admin_app/signup.html')
+        # Redirect to the login page
+        return redirect('login_user')  # Ensure the 'login_user' URL pattern exists in your urls.py
 
-    return render(request, 'admin_app/signup.html')
+    return render(request, "admin_app/signup.html")
 
-
-
-@csrf_exempt  # Remove this in production
+#login_user 
 def login_user(request):
     print("endpoint login hit")
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        print("metho success")
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        print("method success")
 
         if email and password:
             user = authenticate(request, username=email, password=password)
-            print("fileds succesfull")
+            print("fields successful")
             if user:
                 login(request, user)  # Ensure this is imported at the top: `from django.contrib.auth import login`
-                print("login")
-                return render(request,"ipo_app/dashboard.html")
+                print("login successful")
+                return redirect('dashboard')  # Corrected template path for redirection after login
             else:
                 messages.error(request, 'Invalid email or password')
-                print("invslid")
-                return render(request, 'admin_app/login.html')  # Correct template for login
+                print("invalid credentials")
+                return render(request, 'admin_app/login.html')  # Corrected template path for invalid login
 
         messages.error(request, 'Both fields are required')
         print("fields missing")
-        return render(request, 'admin_app/login.html')  # Correct template for login
+        return render(request, 'admin_app/login.html')  # Corrected template path for missing fields
 
     # If the request method is GET, render the login page
-    return render(request, 'admin_app/login.html')
+    return render(request, 'admin_app/login.html')  # Correct template path for GET request
 
 
 
-
-@csrf_exempt
+'''@csrf_exempt
 def forgot_password(request):
     if request.method == 'POST':
         try:
@@ -124,4 +122,4 @@ def forgot_password(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
 
-        return render(request, 'admin_app/forgot-password.html')
+        return render(request, 'admin_app/forgot-password.html')'''

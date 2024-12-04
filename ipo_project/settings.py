@@ -56,7 +56,7 @@ ROOT_URLCONF = "ipo_project.urls"
 TEMPLATES = [
     {   
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'ipo_app/templates', BASE_DIR / 'frontend/templates'] ,
         # 'DIRS': [BASE_DIR / 'ipo_app/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
