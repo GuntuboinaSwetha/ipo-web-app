@@ -5,7 +5,6 @@
         <h1>Upcoming IPO | Dashboard</h1>
         <div class="user-profile">
             <button class="register-btn" onclick="window.location.href='{% url 'register_ipo' %}'">Register IPO</button>
-
         </div>
     </div>
 
@@ -26,15 +25,24 @@
                 </tr>
             </thead>
             <tbody>
+                {% for ipo in ipo_list %}
                 <tr>
-                    <td>Adani Power</td>
-                    <td>₹ 129 - 136</td>
-                    <td>2024-06-03</td>
-                    <td>2024-06-05</td>
-                    <td>130.15 Cr.</td>
-                    <td>Book Built</td>
-                    <td>2024-06-10</td>
-                    <td><span class="status-badge status-ongoing">Ongoing</span></td>
+                    <td>{{ ipo.company_name }}</td>
+                    <td>{{ ipo.price_band }}</td>
+                    <td>{{ ipo.open_date }}</td>
+                    <td>{{ ipo.close_date }}</td>
+                    <td>{{ ipo.issue_size }}</td>
+                    <td>{{ ipo.issue_type }}</td>
+                    <td>{{ ipo.listing_date }}</td>
+                    <td>
+                        {% if ipo.status == "Coming Soon" %}
+                            <span class="status-badge status-coming">Coming</span>
+                        {% elif ipo.status == "Ongoing" %}
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        {% else %}
+                            <span class="status-badge status-new">New Listed</span>
+                        {% endif %}
+                    </td>
                     <td>
                         <button class="btn-update">Update</button>
                     </td>
@@ -47,51 +55,10 @@
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>VBL LTD</td>
-                    <td>₹ 129 - 136</td>
-                    <td>2024-06-03</td>
-                    <td>2024-06-05</td>
-                    <td>130.15 Cr.</td>
-                    <td>Book Built</td>
-                    <td>2024-06-10</td>
-                    <td><span class="status-badge status-coming">Coming</span></td>
-                    <td>
-                        <button class="btn-update">Update</button>
-                    </td>
-                    <td class="action-cell">
-                        <button class="btn-icon">
-                            <span class="material-icons">delete</span>
-                        </button>
-                        <button class="btn-icon">
-                            <span class="material-icons">visibility</span>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tata Motor</td>
-                    <td>₹ 129 - 136</td>
-                    <td>2024-06-03</td>
-                    <td>2024-06-05</td>
-                    <td>130.15 Cr.</td>
-                    <td>Book Built</td>
-                    <td>2024-06-10</td>
-                    <td><span class="status-badge status-new">New Listed</span></td>
-                    <td>
-                        <button class="btn-update">Update</button>
-                    </td>
-                    <td class="action-cell">
-                        <button class="btn-icon">
-                            <span class="material-icons">delete</span>
-                        </button>
-                        <button class="btn-icon">
-                            <span class="material-icons">visibility</span>
-                        </button>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
-    
+
         <div class="pagination">
             <button class="page-btn">&lt;</button>
             <button class="page-btn active">1</button>

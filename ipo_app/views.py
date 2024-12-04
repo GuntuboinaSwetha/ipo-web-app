@@ -21,8 +21,37 @@ def dashboard(request):
     return render(request, "ipo_app/dashboard.html")  # Ensure the path to your template is correct
 
 def manage_ipo(request):
-    return render(request, "ipo_app/manage_ipo.html")  # Ensure the path to your template is correct
+    ipo_list = []
+    try:
+        # Retrieve all IPO details from the database
+        ipo_list_queryset = IPODetails.objects.all()
+        
+        # Loop through the queryset and add IPO objects to the ipo_list
+        for each_ipo_details in ipo_list_queryset:
+            ipo_list.append({
+                'company_name': each_ipo_details.company_name,
+                'price_band': each_ipo_details.price_band,
+                'open_date': each_ipo_details.open_date,
+                'close_date': each_ipo_details.close_date,
+                'issue_size': each_ipo_details.issue_size,
+                'issue_type': each_ipo_details.issue_type,
+                'listing_date': each_ipo_details.listing_date,
+                'status': each_ipo_details.get_status_display(),  # Human-readable status
+                'ipo_price': each_ipo_details.ipo_price,
+                'listing_price': each_ipo_details.listing_price,
+                'listing_gain': each_ipo_details.listing_gain,
+                'cmp': each_ipo_details.cmp,
+                'current_return': each_ipo_details.current_return,
+                'rhp': each_ipo_details.rhp,
+                'drhp': each_ipo_details.drhp,
+            })
+    except Exception as e:
+        print(f"error{str(e)}")
+        ipo_list = []  # In case there are no IPO records
 
+    # Pass the list of IPOs to the template
+    print(ipo_list)
+    return render(request, "ipo_app/manage_ipo.html", {'ipo_list': ipo_list})
 
 def register_ipo(request):
     return render(request, "ipo_app/register_ipo.html")  # Ensure the path to your template is correct
@@ -34,6 +63,8 @@ def sign_up(request):
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+
+
 
 def sign_up(request):
     if request.method == "POST":
